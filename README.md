@@ -1,8 +1,8 @@
 # Study-Timer-BE
 
-#DB Tables
+# DB Tables
 
-##User Table
-Key|Value|Required
+## User Table
+ Key | Value | Required
 ------------------
-ID|Auto|True
+ ID | Auto | True
