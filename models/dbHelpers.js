@@ -24,6 +24,13 @@ function findUserById(id) {
         .first();
 }
 
+//Find user by username
+function findUserByUsername(username) {
+    return db('users')
+        .where({ username })
+        .first();
+}
+
 //Update user info
 function updateUser(id, info) {
     return (
@@ -143,6 +150,7 @@ module.exports = {
     addUser,
     findUsers,
     findUserById,
+    findUserByUsername,
     updateUser,
     removeUser,
     addSubject,

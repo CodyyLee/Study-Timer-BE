@@ -1,15 +1,22 @@
 const express = require('express');
 const db = require('../models/dbHelpers');
+const bcrypt = require('bcryptjs');
 const router = express.Router();
 
 //create user endpoint
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
+    const credentials = req.body;
+    const { username, password } = credentials;
 
-    if(!req.body.username || !req.body.password) {
+    if(!username || !password) {
         res.status(401).json({ message: 'Must include both a username and password.' });
     }
     else {
-        return db.addUser(req.body)
+
+        const hash = bcrypt.hashSync(password, 12);
+        credentials.password = hash;
+
+        return db.addUser(credentials)
         .then(user => {
             res.status(201).json(user);
         })
@@ -18,6 +25,28 @@ router.post('/', (req, res) => {
         })
     }
 });
+
+//Login endpoint
+router.post('/login', (req, res) => {
+    const credentials = req.body;
+    const { username, password } = credentials;
+
+    if(!username || !password) {
+        res.status(401).json({ message: "Username and Password required." })
+    }
+
+    return db.findUserByUsername(username)
+        .then(user => {
+            if(user && bcrypt.compareSync(password, user.password)) {
+                res.status(201).json({ message: `Welcome, ${username}!`})
+            } else {
+                res.status(401).json({ message: 'Incorrect username/password. Please try again.' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: `Server error occured: ${err}`})
+        })
+})
 
 //get all users endpoint
 router.get('/', (req, res) => {
