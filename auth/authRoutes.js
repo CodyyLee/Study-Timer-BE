@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
 });
 
 //Login endpoint
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
     const credentials = req.body;
     const { username, password } = credentials;
 
