@@ -59,7 +59,9 @@ In total, there are three tables being used in this application. **Users**, **Su
 # Authentication Endpoints
 
 ## `/api/auth/register`
-! POST
+```
+POST
+```
 
 Endpoint used to register a new user to the platform. Hashes the user's password to allow it to be saved in the database.
 
