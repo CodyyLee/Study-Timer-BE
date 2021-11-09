@@ -41,4 +41,55 @@ router.get('/:id', (req, res) => {
         })
 })
 
+//Find all user's subjects
+router.get('/user/:user_id', (req, res) => {
+    const { user_id } = req.params;
+    return db.findSubjectsByUser(user_id)
+        .then(subjects => {
+            console.log(subjects)
+            if(subjects.length > 0) {
+                res.status(200).json(subjects)
+            } else {
+                res.status(404).json({ message: 'No subjects were found with this user ID.'})
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: `Server error occured: ${err}`})
+        })
+})
+
+//Update subject
+router.patch('/:id', (req, res) => {
+    const { id } = req.params;
+    
+    return db.updateSubject(id, req.body)
+        .then(subject => {
+            if(subject) {
+                res.status(201).json(subject);
+            } else {
+                res.status(404).json({ message: 'Subject with this ID was not found.' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: `Server error occured: ${err}`})
+        })
+})
+
+//Delete a subject
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+
+    return db.removeSubject(id)
+        .then(count => {
+            if(count > 0) {
+                res.status(201).json({ message: 'Subject was deleted successfully.' })
+            } else {
+                res.status(404).json({ message: 'Subject with this ID was not found.' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: `Server error occured: ${err}`})
+        })
+})
+
 module.exports = router;

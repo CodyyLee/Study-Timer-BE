@@ -1,6 +1,4 @@
-const knex = require('knex');
-const config = require('../knexfile');
-const db = knex(config.development);
+const db = require('../dbConfig');
 
 
 //**************************
@@ -67,10 +65,29 @@ function findSubjectById(id) {
 }
 
 //Get all subjects by user_id
+function findSubjectsByUser(user_id) {
+    return db('subjects')
+        .where({ user_id })
+}
 
 //Update subject
+function updateSubject(id, info) {
+    return (
+        db('subjects')
+            .where({ id })
+            .update(info, [id])
+            .then(() => {
+                return findSubjectById(id);
+            })
+    )
+}
 
 //Delete subject
+function removeSubject(id) {
+    return db('subjects')
+        .where({ id })
+        .del()
+}
 
 module.exports = {
     addUser,
@@ -79,5 +96,8 @@ module.exports = {
     updateUser,
     removeUser,
     addSubject,
-    findSubjectById
+    findSubjectById,
+    findSubjectsByUser,
+    updateSubject,
+    removeSubject
 }
