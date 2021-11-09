@@ -56,7 +56,7 @@ function removeUser(id) {
 
 //Add a subject
 async function addSubject(subject) {
-    return db('subject')
+    return await db('subject')
         .insert(subject, ['id'])
 }
 
@@ -99,7 +99,7 @@ function removeSubject(id) {
 
 //Add timer
 async function addTimer(timer) {
-    return db('timers')
+    return await db('timers')
         .insert(timer, ['id'])
 }
 
