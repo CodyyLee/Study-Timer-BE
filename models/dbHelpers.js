@@ -7,9 +7,8 @@ const db = require('../dbConfig');
 
 //Add/Register a new user
 async function addUser(user) {
-    const [ id ] = await db("users").insert(user, [user.id]);
-
-    return user;
+    return await db('users')
+        .insert(user, ['id']);
 };
 
 //Find all users
@@ -57,10 +56,8 @@ function removeUser(id) {
 
 //Add a subject
 async function addSubject(subject) {
-    const [ id ] = await db('subjects')
-        .insert(subject, [ subject ]);
-
-    return subject;
+    return db('subject')
+        .insert(subject, ['id'])
 }
 
 //Get subject by id
@@ -102,10 +99,8 @@ function removeSubject(id) {
 
 //Add timer
 async function addTimer(timer) {
-    const [ id ] = await db('timers')
-        .insert(timer, [ timer ])
-
-    return timer;
+    return db('timers')
+        .insert(timer, ['id'])
 }
 
 //Get timer by ID
