@@ -53,6 +53,27 @@ In total, there are three tables being used in this application. **Users**, **Su
 | modified_at | timestamp | auto |
 
 
+## Subject Table
+
+| Key | Value | Required |
+| :-: | :-:   | :-:      |
+| ID | Integer | true |
+| subject_name | Text | true |
+| study_total | Integer | false |
+| user_id | Integer | true |
+
+
+## Timer Table
+
+| Key | Value | Required |
+| :-: | :-:   | :-:      |
+| ID | Integer | true |
+| user_id | Integer | true |
+| subject_id | Integer | true |
+| timer_name | Text | true |
+| duration | Integer | true |
+
+
 ----------------------------------------------------------------------------
 
 
@@ -82,6 +103,152 @@ Endpoint used to sign an existing user into the platform. Upon a successful logi
 
 
 # User Endpoints
+
+##```/api/users/:id```
+#### `GET`
+
+Endpoint to get user data.
+
+### Requires
+- User ID
+
+
+##```/api/users/:id```
+#### `PATCH`
+
+Endpoint used to update a user's information.
+
+### Requires
+- User ID
+- Data to be updated
+
+
+##```/api/users/:id```
+#### `DELETE`
+
+Endpoint used to remove a user from the platform.
+
+### Requires
+- User ID
+
+
+------------------------------------------------------------------
+
+
+# Subject Endpoints
+
+## ```/api/subjects/:user_id```
+#### `POST`
+
+Endpoint used to add a new subject linked to a user's account.
+
+### Requires
+- User ID
+- Required subject data [ View table here ](#subject-table)
+
+
+##```/api/subjects/:id```
+#### `GET`
+
+Endpoint used to find a specific subject.
+
+### Requires
+- Subject ID
+
+
+## ```/api/subjects/user/:user_id```
+#### `GET`
+
+Endpoint used to find **all** subject created by a user.
+
+### Requires
+- User ID
+
+
+## ```/api/subjects/:id```
+#### `PATCH`
+
+Endpoint used to update a subject.
+
+### Requires
+- Subject ID
+
+
+## ```/api/subjects/:id```
+#### `DELETE`
+
+Endpoint used to delete a subject.
+
+### Requires
+- Subject ID
+
+
+------------------------------------------------------------------------------------
+
+
+#Timer Endpoints
+
+
+## ```/api/timers/:user_id```
+#### `POST`
+
+Endpoint used to create a new timer for a user.
+
+### Requires
+- User ID
+- Timer Data [ View table here ](#timer-table)
+
+
+## ```/api/timers/:id```
+#### `GET`
+
+Endpoint used to get a specific timer's info
+
+### Requires
+- Timer ID
+
+
+## ```/api/timers/user/:user_id```
+#### `GET`
+
+Endpoint used to get **all** timers created by a specific user.
+
+### Requires
+- User ID
+
+
+## ```/api/timers/subject/:subject_id```
+#### `GET`
+
+Endpoint used to get **all** timers with a specific subject ID.
+
+### Requires
+- Subject ID
+
+
+## ```/api/timers/:id```
+#### `PATCH`
+
+Endpoint used to update a specific timer's information.
+
+### Requires
+- Timer ID
+- Timer data to change
+
+
+## ```/api/timers/:id```
+#### `DELETE`
+
+Endpoint used to remove a timer from the platform.
+
+### Requires
+- Timer ID
+
+
+
+
+
+
 
 
 
