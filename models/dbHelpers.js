@@ -7,7 +7,7 @@ const db = require('../dbConfig');
 
 //Add/Register a new user
 async function addUser(user) {
-    const [ id ] = await db("users").insert(user, [user]);
+    const [ id ] = await db("users").insert(user, [user.id]);
 
     return user;
 };
