@@ -46,7 +46,6 @@ router.get('/user/:user_id', (req, res) => {
     const { user_id } = req.params;
     return db.findSubjectsByUser(user_id)
         .then(subjects => {
-            console.log(subjects)
             if(subjects.length > 0) {
                 res.status(200).json(subjects)
             } else {

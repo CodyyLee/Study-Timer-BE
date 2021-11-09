@@ -49,9 +49,8 @@ function removeUser(id) {
 //**************************
 
 //Add a subject
-async function addSubject(subject, user_id) {
+async function addSubject(subject) {
     const [ id ] = await db('subjects')
-        .where({ user_id })
         .insert(subject);
 
     return subject;
@@ -89,6 +88,57 @@ function removeSubject(id) {
         .del()
 }
 
+
+//**************************
+//****TIMER DB HELPERS******
+//**************************
+
+//Add timer
+async function addTimer(timer) {
+    const [ id ] = await db('timers')
+        .insert(timer)
+
+    return timer;
+}
+
+//Get timer by ID
+function findTimerById(id) {
+    return db('timers')
+        .where({ id })
+        .first();
+}
+
+//Get timers by user ID
+function findTimersByUserId(user_id) {
+    return db('timers')
+        .where({ user_id })
+}
+
+//Get timers by subject id
+function findTimersBySubjectId(subject_id) {
+    return db('timers')
+        .where({ subject_id })
+}
+
+//Update timer
+function updateTimer(id, info) {
+    return(
+        db('timers')
+            .where({ id })
+            .update(info, [ id ])
+            .then(() => {
+                return findTimerById(id);
+            })
+    )
+}
+
+//Delete timer
+function removeTimer(id) {
+    return db('timers')
+        .where({ id })
+        .del();
+}
+
 module.exports = {
     addUser,
     findUsers,
@@ -99,5 +149,11 @@ module.exports = {
     findSubjectById,
     findSubjectsByUser,
     updateSubject,
-    removeSubject
+    removeSubject,
+    addTimer,
+    findTimerById,
+    findTimersByUserId,
+    findTimersBySubjectId,
+    updateTimer,
+    removeTimer
 }
