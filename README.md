@@ -245,12 +245,8 @@ Endpoint used to remove a timer from the platform.
 - Timer ID
 
 
+----------------------------------------------------------------------------------------
 
+# Links
 
-
-
-
-
-
-
-
+Once Frontend application has been created, you can find the links to the frontend repo and the deployed project.
