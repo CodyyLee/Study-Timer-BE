@@ -56,8 +56,8 @@ function removeUser(id) {
 
 //Add a subject
 async function addSubject(subject) {
-    return await db('subject')
-        .insert(subject, ['subject_name'])
+    return await db('subjects')
+        .insert(subject, ['id'])
 }
 
 //Get subject by id
