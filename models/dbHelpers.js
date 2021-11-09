@@ -35,7 +35,7 @@ function updateUser(id, info) {
     return (
         db('users')
             .where({ id })
-            .update(info, [ id ])
+            .update(info)
         .then(() => {
             return findUserById(id)
         })
@@ -78,7 +78,7 @@ function updateSubject(id, info) {
     return (
         db('subjects')
             .where({ id })
-            .update(info, [id])
+            .update(info)
             .then(() => {
                 return findSubjectById(id);
             })
@@ -127,7 +127,7 @@ function updateTimer(id, info) {
     return(
         db('timers')
             .where({ id })
-            .update(info, [ id ])
+            .update(info)
             .then(() => {
                 return findTimerById(id);
             })
