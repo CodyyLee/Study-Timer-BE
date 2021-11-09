@@ -104,7 +104,7 @@ Endpoint used to sign an existing user into the platform. Upon a successful logi
 
 # User Endpoints
 
-##```/api/users/:id```
+## ```/api/users/:id```
 #### `GET`
 
 Endpoint to get user data.
@@ -113,7 +113,7 @@ Endpoint to get user data.
 - User ID
 
 
-##```/api/users/:id```
+## ```/api/users/:id```
 #### `PATCH`
 
 Endpoint used to update a user's information.
@@ -123,7 +123,7 @@ Endpoint used to update a user's information.
 - Data to be updated
 
 
-##```/api/users/:id```
+## ```/api/users/:id```
 #### `DELETE`
 
 Endpoint used to remove a user from the platform.
@@ -147,7 +147,7 @@ Endpoint used to add a new subject linked to a user's account.
 - Required subject data [ View table here ](#subject-table)
 
 
-##```/api/subjects/:id```
+## ```/api/subjects/:id```
 #### `GET`
 
 Endpoint used to find a specific subject.
@@ -186,7 +186,7 @@ Endpoint used to delete a subject.
 ------------------------------------------------------------------------------------
 
 
-#Timer Endpoints
+# Timer Endpoints
 
 
 ## ```/api/timers/:user_id```
