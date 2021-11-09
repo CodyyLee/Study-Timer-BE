@@ -7,7 +7,7 @@ const db = require('../dbConfig');
 
 //Add/Register a new user
 async function addUser(user) {
-    const [ id ] = await db("users").insert(user, [id]);
+    const [ id ] = await db("users").insert(user, [user]);
 
     return user;
 };
@@ -58,7 +58,7 @@ function removeUser(id) {
 //Add a subject
 async function addSubject(subject) {
     const [ id ] = await db('subjects')
-        .insert(subject, [ id ]);
+        .insert(subject, [ subject ]);
 
     return subject;
 }
@@ -103,7 +103,7 @@ function removeSubject(id) {
 //Add timer
 async function addTimer(timer) {
     const [ id ] = await db('timers')
-        .insert(timer, [ id ])
+        .insert(timer, [ timer ])
 
     return timer;
 }
