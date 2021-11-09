@@ -37,5 +37,27 @@ Below is a list of the technologies used to create the StudyTime backend API, as
 ---------------------------------------------------------------
 
 
-#Database Tables
+# Database Tables
+
+In total, there are three tables being used in this application. **Users**, **Subjects**, and **Timers**. Below you I have listed the structure of these tables and what they require.
+
+## User Table
+
+| Key | Value | Required |
+| :-: | :-:   | :-:      |
+| ID | Integer | true |
+| username | Text | true |
+| password | Text | true |
+| display_name | Text | false |
+| created_at | timestamp | auto |
+| modified_at | timestamp | auto |
+
+
+
+
+
+
+
+
+
 
