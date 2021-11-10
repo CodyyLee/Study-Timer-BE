@@ -89,15 +89,11 @@ Endpoint used to register a new user to the platform. Hashes the user's password
 - password
 
 ### Example
-A successful registration returns a status of 201 with a JSON object like so:
+A successful registration returns a status of 201, and return the newly created user's ID:
+
 ```json
   {
-    "id": 1,
-    "username": "Patch",
-    "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
-    "created_at": "2021-11-09T03:11:20.006Z",
-    "updated_at": "2021-11-09T03:11:20.006Z",
-    "display_name": "Codyy"
+    "id": 3
   }
 ```
 
@@ -110,6 +106,20 @@ Endpoint used to sign an existing user into the platform. Upon a successful logi
 ### Requires
 - username
 - password
+
+### Example
+A successful login returns a status of 201, and return a JSON object like so:
+
+```json
+  {
+    "id": 1,
+    "username": "Patch",
+    "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
+    "created_at": "2021-11-09T03:11:20.006Z",
+    "updated_at": "2021-11-09T03:11:20.006Z",
+    "display_name": "Codyy"
+  }
+```
 
 
 -----------------------------------------------------------------------------
@@ -125,6 +135,20 @@ Endpoint to get user data.
 ### Requires
 - User ID
 
+### Example
+A successful request will result in a status of 200 and return a JSON object like so:
+
+```json
+  {
+    "id": 1,
+    "username": "Patch",
+    "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
+    "created_at": "2021-11-09T03:11:20.006Z",
+    "updated_at": "2021-11-09T03:11:20.006Z",
+    "display_name": "Codyy"
+  }
+```
+
 
 ## ```/api/users/:id```
 #### `PATCH`
@@ -135,6 +159,38 @@ Endpoint used to update a user's information.
 - User ID
 - Data to be updated
 
+### Examples
+Upon registration, a display name is optional. A user may wish to add or change their display name. With that in mind, the starting object could look something like this:
+```json
+  {
+    "id": 1,
+    "username": "Patch",
+    "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
+    "created_at": "2021-11-09T03:11:20.006Z",
+    "updated_at": "2021-11-09T03:11:20.006Z",
+    "display_name": Null
+}
+```
+
+Sending an object to update the display name like so:
+```json
+  {
+    "display_name": "Codyy"
+  }
+```
+
+A successful request will return a status of 201, and return a JSON object like so:
+```json
+  {
+    "id": 1,
+    "username": "Patch",
+    "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
+    "created_at": "2021-11-09T03:11:20.006Z",
+    "updated_at": "2021-11-09T03:11:20.006Z",
+    "display_name": "Codyy"
+}
+```
+
 
 ## ```/api/users/:id```
 #### `DELETE`
@@ -143,6 +199,15 @@ Endpoint used to remove a user from the platform.
 
 ### Requires
 - User ID
+
+### Example
+A successful request will return a status of 200, and return the following JSON object:
+
+```json
+  {
+    "message": "User has been deleted."
+  }
+```
 
 
 ------------------------------------------------------------------
