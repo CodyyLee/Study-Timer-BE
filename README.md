@@ -406,6 +406,27 @@ Endpoint used to create a new timer for a user.
 - User ID
 - Timer Data [ View table here ](#timer-table)
 
+### Example
+Sending a request may look something like so:
+
+```json
+  {
+    "timer_name": "Node Timer",
+    "duration": 3600,
+    "subject_id": 1
+  }
+```
+
+A successful request will return with a status of 201, and the ID of the newly created timer:
+
+```json
+  {
+    "id": 1
+  }
+```
+
+
+
 
 ## ```/api/timers/:id```
 #### `GET`
@@ -414,6 +435,19 @@ Endpoint used to get a specific timer's info
 
 ### Requires
 - Timer ID
+
+### Example
+A successful request will return a status of 200, and a JSON object like so:
+
+```json
+  {
+        "id": 1,
+        "user_id": 1,
+        "subject_id": 1,
+        "timer_name": "Node Timer",
+        "duration": 3600
+    }
+```
 
 
 ## ```/api/timers/user/:user_id```
@@ -424,6 +458,27 @@ Endpoint used to get **all** timers created by a specific user.
 ### Requires
 - User ID
 
+### Example
+A successful request will return a status of 200, and a JSON object like so:
+
+```json
+  [
+    {
+        "id": 1,
+        "user_id": 1,
+        "subject_id": 1,
+        "timer_name": "Node Timer",
+        "duration": 3600
+    },
+    {
+        "id": 2,
+        "user_id": 1,
+        "subject_id": 2,
+        "timer_name": "GraphQL Timer",
+        "duration": 3600
+    }
+```
+
 
 ## ```/api/timers/subject/:subject_id```
 #### `GET`
@@ -432,6 +487,27 @@ Endpoint used to get **all** timers with a specific subject ID.
 
 ### Requires
 - Subject ID
+
+### Example
+A successful request will return a status of 200, and a JSON object like so:
+
+```json
+  [
+    {
+        "id": 2,
+        "user_id": 1,
+        "subject_id": 2,
+        "timer_name": "GraphQL Timer",
+        "duration": 3600
+    },
+    {
+        "id": 3,
+        "user_id": 1,
+        "subject_id": 2,
+        "timer_name": "GraphQL Timer 2",
+        "duration": 1800
+    }
+```
 
 
 ## ```/api/timers/:id```
@@ -443,6 +519,41 @@ Endpoint used to update a specific timer's information.
 - Timer ID
 - Timer data to change
 
+### Examples
+Assuming the initial JSON object looks like this:
+
+```json
+  {
+    "id": 2,
+    "user_id": 1,
+    "subject_id": 2,
+    "timer_name": "GraphQL Timer",
+    "duration": 3600
+}
+```
+
+A request to update the timer's name would be:
+
+```json
+  {
+    "timer_name": "GraphQL Updated"
+  }
+```
+
+A successful request will return a status of 201, and a JSON object like so:
+
+```json
+  {
+    "id": 2,
+    "user_id": 1,
+    "subject_id": 2,
+    "timer_name": "GraphQL Updated",
+    "duration": 3600
+}
+```
+
+
+
 
 ## ```/api/timers/:id```
 #### `DELETE`
@@ -451,6 +562,15 @@ Endpoint used to remove a timer from the platform.
 
 ### Requires
 - Timer ID
+
+### Example
+A successful request will return a status of 200, and the following JSON object:
+
+```json
+  {
+    "message": "Timer successfully deleted."
+  }
+```
 
 
 ----------------------------------------------------------------------------------------
