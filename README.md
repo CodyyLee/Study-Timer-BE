@@ -88,7 +88,16 @@ Endpoint used to register a new user to the platform. Hashes the user's password
 - username
 - password
 
-### Example
+### Examples
+Submitting a registration request, the JSON object would look something like so:
+
+```json
+  {
+    "username": "Patch",
+    "password": "123"
+  }
+```
+
 A successful registration returns a status of 201, and return the newly created user's ID:
 
 ```json
@@ -96,6 +105,8 @@ A successful registration returns a status of 201, and return the newly created 
     "id": 3
   }
 ```
+
+
 
 
 ## ```/api/auth/login```
@@ -108,6 +119,15 @@ Endpoint used to sign an existing user into the platform. Upon a successful logi
 - password
 
 ### Example
+Much like the registration request, the login object will look the same:
+
+```json
+  {
+    "username": "Patch",
+    "password": "123"
+  }
+```
+
 A successful login returns a status of 201, and return a JSON object like so:
 
 ```json
@@ -117,7 +137,7 @@ A successful login returns a status of 201, and return a JSON object like so:
     "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
     "created_at": "2021-11-09T03:11:20.006Z",
     "updated_at": "2021-11-09T03:11:20.006Z",
-    "display_name": "Codyy"
+    "display_name": Null
   }
 ```
 
@@ -145,9 +165,11 @@ A successful request will result in a status of 200 and return a JSON object lik
     "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
     "created_at": "2021-11-09T03:11:20.006Z",
     "updated_at": "2021-11-09T03:11:20.006Z",
-    "display_name": "Codyy"
+    "display_name": Null
   }
 ```
+
+
 
 
 ## ```/api/users/:id```
@@ -192,6 +214,8 @@ A successful request will return a status of 201, and return a JSON object like 
 ```
 
 
+
+
 ## ```/api/users/:id```
 #### `DELETE`
 
@@ -224,6 +248,34 @@ Endpoint used to add a new subject linked to a user's account.
 - User ID
 - Required subject data [ View table here ](#subject-table)
 
+### Example
+Adding a new subject will require a JSON object like so:
+
+```json
+  {
+    "subject_name": "Nodejs"
+  }
+```
+
+**NOTE that while a User ID is required, if it is not provided to the JSON object directly, it will be obtained from the URL automatically**
+
+```json
+  {
+    "subject_name": "Nodejs",
+    "user_id": 1
+  }
+```
+
+A successful request will return a status of 201, and return the newly created subject's ID:
+
+```json
+  {
+    "id": 1
+  }
+```
+
+
+
 
 ## ```/api/subjects/:id```
 #### `GET`
@@ -232,6 +284,19 @@ Endpoint used to find a specific subject.
 
 ### Requires
 - Subject ID
+
+### Example
+A successful response will return a status of 200, and a JSON object like so:
+
+```json
+  {
+    "id": 1,
+    "subject_name": "Nodejs",
+    "study_total": null,
+    "user_id": 1
+  }
+```
+
 
 
 ## ```/api/subjects/user/:user_id```
@@ -242,6 +307,28 @@ Endpoint used to find **all** subject created by a user.
 ### Requires
 - User ID
 
+### Example
+A successful response will return a status of 200, and a JSON object like so:
+
+```json
+  [
+    {
+        "id": 1,
+        "subject_name": "Nodejs",
+        "study_total": null,
+        "user_id": 1
+    },
+    {
+      "id": 2,
+      "subject_name": "GrqphQL",
+      "study_total": null,
+      "user_id": 1
+    }
+]
+```
+
+
+
 
 ## ```/api/subjects/:id```
 #### `PATCH`
@@ -250,6 +337,40 @@ Endpoint used to update a subject.
 
 ### Requires
 - Subject ID
+- Data to be updated
+
+### Examples
+Updating a subject works just as updating the user does. If the initial object looks something like this:
+
+```json
+  {
+    "id": 1,
+    "subject_name": "Nodejs",
+    "study_total": Null,
+    "user_id": 1
+  }
+```
+
+Sending a request such as:
+
+```json
+  {
+    "study_total": 300
+  }
+```
+
+A successful response would then return a status of 201, and the following JSON object:
+
+```json
+  {
+    "id": 1,
+    "subject_name": "Nodejs",
+    "study_total": 300,
+    "user_id": 1
+  }
+```
+
+
 
 
 ## ```/api/subjects/:id```
@@ -259,6 +380,15 @@ Endpoint used to delete a subject.
 
 ### Requires
 - Subject ID
+
+### Example
+A successful request will return a status of 200 and the following:
+```json
+  {
+      "message": "Subject was deleted successfully."
+  }
+```
+
 
 
 ------------------------------------------------------------------------------------
