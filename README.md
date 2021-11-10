@@ -88,6 +88,15 @@ Endpoint used to register a new user to the platform. Hashes the user's password
 - username
 - password
 
+### Example
+```json
+  {
+    "username": "CodyyLee",
+    "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
+    "display_name": "Cody"
+  }
+```
+
 
 ## ```/api/auth/login```
 #### `POST`
