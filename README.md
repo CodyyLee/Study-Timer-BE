@@ -89,11 +89,15 @@ Endpoint used to register a new user to the platform. Hashes the user's password
 - password
 
 ### Example
+A successful registration returns a status of 201 with a JSON object like so:
 ```json
   {
-    "username": "CodyyLee",
+    "id": 1,
+    "username": "Patch",
     "password": "$2a$12$n6TAYGwvOwqsHtKhmz4jkeiBvbCzyhDAm1qpsEteglOH2FACpxnk.",
-    "display_name": "Cody"
+    "created_at": "2021-11-09T03:11:20.006Z",
+    "updated_at": "2021-11-09T03:11:20.006Z",
+    "display_name": "Codyy"
   }
 ```
 
