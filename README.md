@@ -1,7 +1,7 @@
 ## Study-Timer-BE
 
 # What is StudyTime?
-This repository is the backend API for the StudyTime web application used to track the amount of time an individual is dedicating to a specific area of study. It is a simple application that allows you to create timers to keep you on task and productive. By adding subjects to said timers, you can see how much time you've spent studying a specific topic and give you insight on areas you may need to direct more attention to.
+This repository is the backend API for the StudyTime web application used to track the amount of time an individual is dedicating to a specific area of study. It is a simple application that allows you to create timers to keep you on task and productive. By adding subjects to timers, you can see how much time you've spent studying a specific topic and give you insight on areas you may need to direct more attention to.
 
 
 # Table of Contents
